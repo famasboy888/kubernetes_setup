@@ -43,5 +43,7 @@ VER=$(curl -s https://api.github.com/repos/Mirantis/cri-dockerd/releases/latest|
 echo $VER
 wget https://github.com/Mirantis/cri-dockerd/releases/download/v${VER}/cri-dockerd-${VER}.amd64.tgz
 sudo tar xvf cri-dockerd-${VER}.amd64.tgz
+sudo mv cri-dockerd/cri-dockerd /usr/local/bin/
+cri-dockerd --version
 ```
 
