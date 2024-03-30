@@ -1,6 +1,8 @@
 # kubernetes_setup
 
-## This is a 1 control plane node and 2 worker node cluster
+This is a 1 control plane node and 2 worker node cluster
+
+<hr>
 
 ## Initial steps
 
