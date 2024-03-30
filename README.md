@@ -74,3 +74,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 sudo systemctl enable --now kubelet
 ```
 
+## Tips:
+
+Make sure SWAP is disabled.
+
