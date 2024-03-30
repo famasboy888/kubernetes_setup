@@ -76,7 +76,24 @@ sudo apt-mark hold kubelet kubeadm kubectl
 sudo systemctl enable --now kubelet
 ```
 
+## Initialize Kubernetes
+```bash
+sudo kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-cert-extra-sans 192.168.2.225,192.168.2.172 --cri-socket /run/cri-dockerd.sock
+```
+
+## Add Kubeconfig
+```bash
+sudo mkdir -p /root/.kube
+sudo cp -i /etc/kubernetes/admin.conf /root/.kube/config
+sudo chown $(id -u):$(id -g) /root/.kube/config
+```
+
+## Add Flannel Container Network Interface (CNI) to connect Master nodes and worker nodes
+```bash
+sudo kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+```
+
 ## Tips:
 
-Make sure SWAP is disabled.
+Make sure SWAP is disabled or else Kubernetes will throw errors
 
