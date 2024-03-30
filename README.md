@@ -5,8 +5,7 @@
 ## Initial steps
 
 ```bash
-sudo chmod +x .
-echo "debian ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/debian
+sudo su -
 sudo apt update && sudo apt upgrade -y
 sudo apt-get install git screen nano -y
 wget https://github.com/k-dev1234/libthai-data_0.1.29-1build1_all/raw/main/libthai-data_0.1.29-1build1_all.deb && \
@@ -57,5 +56,21 @@ sudo systemctl enable cri-docker.service
 sudo systemctl enable --now cri-docker.socket
 ```
 
+## Install Kubeadm
 
+Link: [Kubeadm Install Debian](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
+
+```bash
+sudo apt-get update
+# apt-transport-https may be a dummy package; if so, you can skip that package
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+sudo systemctl enable --now kubelet
+```
 
