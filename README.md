@@ -93,6 +93,16 @@ sudo chown $(id -u):$(id -g) /root/.kube/config
 sudo kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 ```
 
+
+# Reset Kube Cluster
+
+```bash
+echo y | sudo kubeadm reset --cri-socket /run/cri-dockerd.sock
+sudo rm -rf /etc/cni/net.d || true
+sudo rm -rf /var/lib/etcd || true
+sudo rm -rf ~/.kube || true
+```
+
 ## Tips:
 
 Make sure SWAP is disabled or else Kubernetes will throw errors
